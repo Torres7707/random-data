@@ -172,35 +172,31 @@ export function createMockData(
 	detailInfoLength?: number
 ) {
 	const data = {
-		code: 0,
-		message: "success",
-		data: {
-			type: type ?? SegmentNodeType.BENT_CAP,
-			title: `${TYPE_NAME[type ?? SegmentNodeType.BENT_CAP]}/港珠澳大桥-左幅`,
-			summaryInfo: randomSummaryInfo(), // 生成随机 summaryInfo
-			workInfo: uniqBy(
-				Array.from({ length: workInfoLength ?? 5 }, () =>
-					randomWorkInfo(type ?? SegmentNodeType.BENT_CAP)
-				)?.sort(
-					(a, b) =>
-						Number(a.name?.match(/\d+(\.\d+)?/g)?.[0]) -
-						Number(b?.name?.match(/\d+(\.\d+)?/g)?.[0])
-				),
-				"name"
-			), // 生成5个随机工作信息
-			detailInfo: uniqBy(
-				Array.from({ length: detailInfoLength ?? 10 }, () =>
-					randomDetailInfo(type ?? SegmentNodeType.BENT_CAP)
-				)?.sort(
-					(a, b) =>
-						Number(a.title?.match(/\d+(\.\d+)?/g)?.[0]) -
-						Number(b?.title?.match(/\d+(\.\d+)?/g)?.[0])
-				),
-				"title"
+		type: type ?? SegmentNodeType.BENT_CAP,
+		title: `${TYPE_NAME[type ?? SegmentNodeType.BENT_CAP]}/港珠澳大桥-左幅`,
+		summaryInfo: randomSummaryInfo(), // 生成随机 summaryInfo
+		workInfo: uniqBy(
+			Array.from({ length: workInfoLength ?? 5 }, () =>
+				randomWorkInfo(type ?? SegmentNodeType.BENT_CAP)
+			)?.sort(
+				(a, b) =>
+					Number(a.name?.match(/\d+(\.\d+)?/g)?.[0]) -
+					Number(b?.name?.match(/\d+(\.\d+)?/g)?.[0])
 			),
-			// 生成10个随机明细信息
-		},
+			"name"
+		), // 生成5个随机工作信息
+		detailInfo: uniqBy(
+			Array.from({ length: detailInfoLength ?? 10 }, () =>
+				randomDetailInfo(type ?? SegmentNodeType.BENT_CAP)
+			)?.sort(
+				(a, b) =>
+					Number(a.title?.match(/\d+(\.\d+)?/g)?.[0]) -
+					Number(b?.title?.match(/\d+(\.\d+)?/g)?.[0])
+			),
+			"title"
+		),
+		// 生成10个随机明细信息
 	};
-	const currentStructureId = data?.data?.detailInfo[randomInt(0, 9)]?.id;
+	const currentStructureId = data?.detailInfo[randomInt(0, 9)]?.id;
 	return { data, currentStructureId };
 }
