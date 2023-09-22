@@ -11,5 +11,10 @@ export default function handler(
 	const { data } = createMockData(type as SegmentNodeType);
 	console.log(data);
 	// 将随机数据作为JSON响应发送
-	response.status(200).json(data);
+	response.status(200).json({
+		code: 0,
+		message: "success",
+		data: data,
+		json: true,
+	});
 }
