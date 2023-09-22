@@ -10,7 +10,7 @@ app.get("/mock/random-data/:type", (req, res) => {
 	const { type } = req.params;
 	// 生成随机数据
 	const { data } = createMockData(type as SegmentNodeType);
-
+	console.log(data);
 	// 将随机数据作为JSON响应发送
 	res.json(data);
 });
