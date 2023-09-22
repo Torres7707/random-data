@@ -1,6 +1,6 @@
 import express from "express";
-import { createMockData } from "./mock";
-import { SegmentNodeType } from "./model";
+import { createMockData } from "../mock";
+import { SegmentNodeType } from "../model";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,3 +18,5 @@ app.get("/mock/random-data/:type", (req, res) => {
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
+
+export default app;
